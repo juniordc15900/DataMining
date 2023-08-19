@@ -8,5 +8,5 @@ def adjust():
     df.Preço = df.Preço*0.7
     data = datetime.today().strftime('%Y-%m-%d')
     df['Data'] = data
-    df.to_excel(f"resultados-crawler/aldo/aldo_produtos_{data}.xlsx")
+    df.to_excel(f"resultados-crawler/aldo/aldo_produtos_{data}.csv")
     print(df)

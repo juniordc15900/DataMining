@@ -64,4 +64,4 @@ for y in myRange(1,7,1):
 print(list_data)    
 df = pd.DataFrame(list_data, columns=['Data','Preco','Potencia', 'Modelo Modulo','Modelo Inversor','Estrutura'])
 
-df.to_excel(f'{hoje_string}.xlsx')
+df.to_excel(f'{hoje_string}.csv')

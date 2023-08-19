@@ -217,7 +217,7 @@ def ecori():
     df = pd.DataFrame(list_data, columns=['Data','Modelo Modulo','Pot Modulo', 'Modelo Inversor','Pot Inversor','Estrutura','Preco Kit'])
 
 
-    df.to_excel(os.path.join('resultados-crawler/ecori',f'ecori_{hoje_string}.xlsx'))
+    df.to_excel(os.path.join('resultados-crawler/ecori',f'ecori_{hoje_string}.csv'))
     driver.close()
 
 ecori()

@@ -75,4 +75,4 @@ df = pd.DataFrame.from_dict(result)
 print(f'DATA FRAME: {df}')
 data = datetime.today().strftime('%Y-%m-%d')
 
-df.to_excel(f'resultados-crawler/amara/amara_{data}.xlsx')
+df.to_excel(f'resultados-crawler/amara/amara_{data}.csv')

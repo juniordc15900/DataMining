@@ -18,14 +18,21 @@ TIME = datetime.today().strftime('%Y-%m-%d')
 
 
 def get_driver() -> WebDriver:
-    driver = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     return driver
 
 
 def login(driver: WebDriver):
     driver.get('https://ourolux.com.br/customer/account/login/')
-    
+
+    button = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, """//*[@id="btn-cookie-allow"]""")))
+    button.click()
+
     email_field = driver.find_element(by=By.XPATH, value='//*[@id="email"]')
     email_field.send_keys(USERNAME)
     password_field = driver.find_element(by=By.XPATH, value='//*[@id="pass"]')
@@ -33,7 +40,7 @@ def login(driver: WebDriver):
     
     submit_btn = driver.find_element(by=By.XPATH, value='//*[@id="send2"]')
     submit_btn.click()
-
+    print("LOGIN EFETUADO")
     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, '//*[@id="custom.topnav"]/nav/ul/li[1]/a')))
 
 
@@ -66,7 +73,7 @@ def get_generator_data(driver: WebDriver) -> list:
         sleep(2)
         if page == qtd_pages:
             qtd_itens = (qtd_itens * qtd_pages) - int(pages[2])
-        
+        print(f'pagina:{page}')
         for item in range(1, qtd_itens + 1):
             try:
                 print(f'item: {item}')
@@ -109,7 +116,7 @@ def get_generator_data(driver: WebDriver) -> list:
 
 def save_data(generators_data: list):
     df = pd.DataFrame(generators_data)
-    df.to_csv(f'resultados-crawler/ourolux/ourolux_{TIME}.xlsx')
+    df.to_csv(f'resultados-crawler/ourolux/ourolux_{TIME}.csv')
 
 
 if __name__ == '__main__':

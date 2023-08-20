@@ -40,7 +40,14 @@ def main():
                     
                     
 def format(dist,arquivo):
+    
     aldos = [Aldo]
+    amaras = [Amara]
+    ecoris = [Ecori]
+    fortlevs = [Fortlev]
+    ouroluxs = [Ourolux]
+    solplaces = [Solplace]
+    
     if dist == 'aldo':
         for _,row in arquivo.iterrows():
             aldo = Aldo(
@@ -52,55 +59,66 @@ def format(dist,arquivo):
         return aldos
     
     if dist == 'amara':
-        amara = Amara(
-            tipo=arquivo['tipo'],
-            marca=arquivo['marca'],
-            nome=arquivo['nome'],
-            preco=arquivo['preço'],
-            data=arquivo['data'])
-        return amara
+        for _,row in arquivo.iterrows():
+            amara = Amara(
+                tipo=row['tipo'],
+                marca=row['marca'],
+                nome=row['nome'],
+                preco=row['preço'],
+                data=row['data'])
+            amaras.append(amara)
+        return amaras
 
     if dist == 'ecori':
-        ecori = Ecori(
-            model_modulo=arquivo['Modelo Modulo'],
-            port_modulo=arquivo['Pot Modulo'],
-            model_inversor=arquivo['Modelo Inversor'],
-            port_inversor=arquivo['Pot Inversor'],
-            estrutura=arquivo['Estrutura'],
-            preco=arquivo['Preco Kit'],
-            data=arquivo['Data'])
+        for _,row in arquivo.iterrows():
+            ecori = Ecori(
+                model_modulo=row['Modelo Modulo'],
+                port_modulo=row['Pot Modulo'],
+                model_inversor=row['Modelo Inversor'],
+                port_inversor=row['Pot Inversor'],
+                estrutura=row['Estrutura'],
+                preco=row['Preco Kit'],
+                data=row['Data'])
+            ecoris.append(ecori)
         return ecori
 
     if dist == 'fortlev':
-        fortlev = Fortlev(
-            potencia=arquivo['potencia'],
-            preco=arquivo['preco'],
-            modulo=arquivo['modulo'],
-            qtd_modulo=arquivo['qtd_modulo'],
-            inversor=arquivo['inversor'],
-            qtd_inversor=arquivo['qtd_inversor'],
-            estrutura=arquivo['estrutura'],
-            data=arquivo['data'])
+        for _,row in arquivo.iterrows():
+            fortlev = Fortlev(
+                potencia=row['potencia'],
+                preco=row['preco'],
+                modulo=row['modulo'],
+                qtd_modulo=row['qtd_modulo'],
+                inversor=row['inversor'],
+                qtd_inversor=row['qtd_inversor'],
+                estrutura=row['estrutura'],
+                data=row['data'])
+            fortlevs.append(fortlev)
         return fortlev
     
     if dist == 'ourolux':
-        ourolux = Ourolux(
-            potencia=arquivo['potencia'],
-            preco=arquivo['preco'],
-            modulo=arquivo['modulo'],
-            qtd_modulo=arquivo['qtd_modulo'],
-            inversor=arquivo['inversor'],
-            qtd_inversor=arquivo['qtd_inversor'],
-            data=arquivo['data'])
+        for _,row in arquivo.iterrows():
+            ourolux = Ourolux(
+                potencia=row['potencia'],
+                preco=row['preco'],
+                modulo=row['modulo'],
+                qtd_modulo=row['qtd_modulo'],
+                inversor=row['inversor'],
+                qtd_inversor=row['qtd_inversor'],
+                data=row['data'])
+            ouroluxs.append(ourolux)
         return ourolux
     
     if dist == 'solplace':
-        solplace = Solplace(
-            produto=arquivo['produto'],
-            preco=arquivo['preco'],
-            inversor=arquivo['inversor'],
-            modulo=arquivo['modulo'],
-            data=arquivo['data'])
+        for _,row in arquivo.iterrows():
+        
+            solplace = Solplace(
+                produto=row['produto'],
+                preco=row['preco'],
+                inversor=row['inversor'],
+                modulo=row['modulo'],
+                data=row['data'])
+            solplaces.append(solplace)
         return solplace
     
 main()
